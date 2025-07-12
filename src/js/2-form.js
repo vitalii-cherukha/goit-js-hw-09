@@ -17,7 +17,7 @@ const fillFeedbackForm = feedbackForm => {
       return;
     }
 
-    formData = feedbackFormLS;
+    Object.assign(formData, feedbackFormLS);
 
     const feedbackFormLSKeys = Object.keys(feedbackFormLS);
 
@@ -47,8 +47,11 @@ const onFormSubmit = evn => {
     alert('Fill please all fields');
     return;
   }
+  console.log(formData);
   evn.target.reset();
   localStorage.removeItem('feedback-form-state');
+  formData.email = '';
+  formData.message = '';
 };
 
 refs.form.addEventListener('input', onFormInput);
